@@ -16,6 +16,9 @@ function renderCards(data){
         const statListUl = document.createElement('ul')
         statListUl.classList.add('card--text')
 
+        const extraListUl = document.createElement('ul')
+        extraListUl.classList.add('card--text')
+
         const nameLi = document.createElement('h2')
         nameLi.classList.add('card--title')
         nameLi.textContent = pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)
@@ -51,7 +54,18 @@ function renderCards(data){
         speedLi.textContent = 'SPEED: ' + pokemon.stats[5].base_stat
         statListUl.appendChild(speedLi)
 
+        for(let i = 0; i < pokemon.game_indices.length; i++){
+            const gameLi = document.createElement('li')
+            gameLi.textContent = pokemon.game_indices[i].version.name
+            extraListUl.appendChild(gameLi)
+        }
+
+        const gamesLi = document.createElement('li')
+        gamesLi.textContent = 'Games'
+
         pokemonLi.appendChild(statListUl)
+        pokemonLi.appendChild(gamesLi)
+        pokemonLi.appendChild(extraListUl)
         cardListUl.appendChild(pokemonLi)
     })
 }
